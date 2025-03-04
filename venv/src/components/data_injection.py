@@ -8,6 +8,9 @@ from src.components.data_transformation import DataTrans
 
 from sklearn.model_selection import train_test_split
 
+from src.components.model_trainer import ModelTrainerConfig
+from src.components.model_trainer import ModelTrainer
+
 @dataclass
 class DataInjConfig:
     train_data_path: str = os.path.join('artifacts', 'train.csv')
@@ -45,5 +48,6 @@ if __name__ == "__main__":
     # Initiate data transformation after injection
     data_transformation = DataTrans()
     train_arr, test_arr, _ = data_transformation.initiate_data_trans(train_path, test_path)
-    print(f"Transformed Train Data Shape: {train_arr.shape}")
-    print(f"Transformed Test Data Shape: {test_arr.shape}")
+
+    modeltrainer=ModelTrainer()
+    print(modeltrainer.initiate_model_trainer(train_arr,test_arr))
